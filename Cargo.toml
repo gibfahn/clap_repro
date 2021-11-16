@@ -4,4 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# Doesn't automatically parse the version.
 clap = "3.0.0-beta.5"
+
+# Automatically parses the version.
+structopt = "0.3.23"

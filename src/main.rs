@@ -1,6 +1,10 @@
 use clap::Parser;
+use structopt::StructOpt;
 
-// By default the version in the cargo.toml is not picked up.
+// By default in clap the version in the Cargo.toml is not picked up.
+// In structopt it is.
+//
+// # In Clap
 //
 // Running `cargo run -- --help` will print `clap_repro` instead of `clap_repro 0.1.0`
 //
@@ -18,12 +22,17 @@ use clap::Parser;
 // For more information try --help
 // ```
 //
-// If you uncomment the version line below things start to work.
+// If you uncomment the #[clap(version)] line below then the version is picked up.
 
 fn main() {
+    // Uses clap, doesn't set the version.
     Opts::parse();
+
+    // Uses StructOpt, does set the version.
+    // Opts::from_args();
 }
 
-#[derive(Parser)]
+#[derive(StructOpt, Parser)]
+// If you set this manually, then clap will have the same behaviour as structopt.
 // #[clap(version = env!("CARGO_PKG_VERSION"))]
 pub struct Opts {}
